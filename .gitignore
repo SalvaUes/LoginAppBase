@@ -1,0 +1,24 @@
+# Build files
+/build/
+*/build/
+*.apk
+*.aab
+
+# Android Studio
+.idea/
+*.iml
+*.hprof
+*.log
+
+# Local configuration
+local.properties
+gradle.properties
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Keystore files
+*.jks
+*.keystore
+*.p12
