@@ -1,32 +1,46 @@
 package sv.edu.ues.vl23003.loginappbase.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import sv.edu.ues.vl23003.loginappbase.R;
-
-// Esta clase maneja el login. Validar usuario/pass contra SharedPrefs usando PrefsManager.
-// Si coincide, abrir HomeActivity con Intent. Si no, mostrar toast de error exacto.
-// Menu: Registrar -> RegisterActivity, Salir -> cerrar app con finishAndRemoveTask.
-// UI: usar ViewBinding, estilos personalizados y toolbar con titulo fijo "Login".
-
+import sv.edu.ues.vl23003.loginappbase.databinding.ActivityMainBinding;
+import sv.edu.ues.vl23003.loginappbase.ui.utils.PrefManager;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ActivityMainBinding binding;
+    private PrefManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        prefManager = new PrefManager(this);
+
+        //  usuario por defecto
+        prefManager.saveUser("admin", "12345");
+
+        binding.btnLogin.setOnClickListener(v -> {
+            String user = binding.etUser.getText().toString();
+            String pass = binding.etPass.getText().toString();
+
+            if (prefManager.validateCredentials(user, pass)) {
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(MainActivity.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.tvRegister.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
     }
 }

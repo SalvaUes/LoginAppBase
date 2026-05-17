@@ -2,9 +2,70 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
     tools:context=".ui.activities.RegisterActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NUEVO USUARIO"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp" />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="USUARIO " android:textColor="#E0E0E0" android:textSize="11sp" />
+            <EditText android:id="@+id/etRegUser" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:textColor="#FFFFFF" android:backgroundTint="#FFFFFF" android:layout_marginBottom="15dp" />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="EMAIL " android:textColor="#E0E0E0" android:textSize="11sp" />
+            <EditText android:id="@+id/etRegEmail" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" android:textColor="#FFFFFF" android:backgroundTint="#FFFFFF" android:layout_marginBottom="15dp" />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="PASSWORD " android:textColor="#E0E0E0" android:textSize="11sp" />
+            <EditText android:id="@+id/etRegPass" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="textPassword" android:textColor="#FFFFFF" android:backgroundTint="#FFFFFF" android:layout_marginBottom="15dp" />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="CONFIRMAR PASSWORD" android:textColor="#E0E0E0" android:textSize="11sp" />
+            <EditText android:id="@+id/etRegPassConfirm" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="textPassword" android:textColor="#FFFFFF" android:backgroundTint="#FFFFFF" android:layout_marginBottom="30dp" />
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="GUARDAR REGISTRO"
+                android:textColor="#6E48AA"
+                android:backgroundTint="#FFFFFF"
+                android:textStyle="bold"
+                app:cornerRadius="30dp" />
+
+            <Button
+                android:id="@+id/btnBack"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="REGRESAR AL LOGIN"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
