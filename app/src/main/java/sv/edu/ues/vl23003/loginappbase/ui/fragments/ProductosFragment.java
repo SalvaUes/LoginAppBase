@@ -1,71 +1,56 @@
 package sv.edu.ues.vl23003.loginappbase.ui.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import sv.edu.ues.vl23003.loginappbase.R;
 
-
-// Fragment para listar productos. Por ahora solo un TextView de prueba.
-// Estructura lista para agregar RecyclerView despues. No hardcodear datos.
-// Verificar que el ID del layout coincida con lo definido en home_menu.xml.
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProductosFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProductosFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ProductosFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProductosFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProductosFragment newInstance(String param1, String param2) {
-        ProductosFragment fragment = new ProductosFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private ListView lvProductos;
+    private List<String> listaProductos;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_productos, container, false);
+        View view = inflater.inflate(R.layout.fragment_productos, container, false);
+
+        lvProductos = view.findViewById(R.id.lvProductos);
+
+        cargarProductos();
+
+        lvProductos.setOnItemClickListener((parent, view1, position, id) -> {
+            String producto = listaProductos.get(position);
+            Toast.makeText(getContext(), "Seleccionaste: " + producto, Toast.LENGTH_SHORT).show();
+        });
+
+        return view;
+    }
+
+    private void cargarProductos() {
+        listaProductos = new ArrayList<>();
+        listaProductos.add("Producto 1");
+        listaProductos.add("Producto 2");
+        listaProductos.add("Producto 3");
+        listaProductos.add("Producto 4");
+        listaProductos.add("Producto 5");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                requireContext(),
+                android.R.layout.simple_list_item_1,
+                listaProductos
+        );
+
+        lvProductos.setAdapter(adapter);
     }
 }

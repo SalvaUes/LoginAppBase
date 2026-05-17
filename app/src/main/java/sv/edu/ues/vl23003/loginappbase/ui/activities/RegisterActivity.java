@@ -1,16 +1,21 @@
-package com.example.evaluacion;
+package sv.edu.ues.vl23003.loginappbase.ui.activities;
 
 import android.os.Bundle;
 import android.util.Patterns;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import sv.edu.ues.vl23003.loginappbase.R;
+import sv.edu.ues.vl23003.loginappbase.ui.utils.PrefManager;
 
 public class RegisterActivity extends AppCompatActivity {
 
     EditText edtUsuario, edtEmail, edtPassword, edtConfirmar;
     Button btnGuardar, btnRegresar;
-
-    PrefsManager prefsManager;
+    PrefManager prefManager;  // ← Cambiado: PrefManager (sin 's')
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnGuardar = findViewById(R.id.btnGuardar);
         btnRegresar = findViewById(R.id.btnRegresar);
 
-        prefsManager = new PrefsManager(this);
+        prefManager = new PrefManager(this);  // ← Cambiado: PrefManager (sin 's')
 
         btnGuardar.setOnClickListener(v -> guardar());
         btnRegresar.setOnClickListener(v -> finish());
@@ -36,19 +41,18 @@ public class RegisterActivity extends AppCompatActivity {
         String pass = edtPassword.getText().toString().trim();
         String confirm = edtConfirmar.getText().toString().trim();
 
-        // validaciones
         if (user.length() < 3) {
-            toast("Usuario minimo 3 caracteres");
+            toast("Usuario mínimo 3 caracteres");
             return;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            toast("Email invalido");
+            toast("Email inválido");
             return;
         }
 
         if (pass.length() < 5 || !pass.matches("[a-zA-Z0-9]+")) {
-            toast("Password minimo 5 y alfanumerico");
+            toast("Password mínimo 5 y alfanumérico");
             return;
         }
 
@@ -57,11 +61,10 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        // guardar
-        prefsManager.guardarUsuario(user, pass, email);
-
-        toast("Usuario registrado");
-
+        // Nota: PrefManager original no tiene guardarUsuario con email
+        // Por ahora guardamos solo usuario y password
+        prefManager.saveUser(user, pass);
+        toast("Usuario registrado exitosamente");
         limpiar();
     }
 

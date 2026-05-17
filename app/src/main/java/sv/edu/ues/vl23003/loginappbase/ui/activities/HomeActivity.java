@@ -7,9 +7,9 @@ import androidx.fragment.app.Fragment;
 
 import sv.edu.ues.vl23003.loginappbase.R;
 import sv.edu.ues.vl23003.loginappbase.databinding.ActivityHomeBinding;
-import sv.edu.ues.vl23003.loginappbase.ui.fragments.HomeFragment;
-import sv.edu.ues.vl23003.loginappbase.ui.fragments.ProductsFragment;
-import sv.edu.ues.vl23003.loginappbase.ui.fragments.ProfileFragment;
+import sv.edu.ues.vl23003.loginappbase.ui.fragments.InicioFragment;
+import sv.edu.ues.vl23003.loginappbase.ui.fragments.PerfilFragment;
+import sv.edu.ues.vl23003.loginappbase.ui.fragments.ProductosFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -21,9 +21,8 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
         if (savedInstanceState == null) {
-            loadFragment(new HomeFragment());
+            loadFragment(new InicioFragment());
         }
 
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
@@ -31,11 +30,11 @@ public class HomeActivity extends AppCompatActivity {
             int id = item.getItemId();
 
             if (id == R.id.nav_home) {
-                selectedFragment = new HomeFragment();
+                selectedFragment = new InicioFragment();
             } else if (id == R.id.nav_products) {
-                selectedFragment = new ProductsFragment();
+                selectedFragment = new ProductosFragment();
             } else if (id == R.id.nav_profile) {
-                selectedFragment = new ProfileFragment();
+                selectedFragment = new PerfilFragment();
             }
 
             if (selectedFragment != null) {

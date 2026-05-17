@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         prefManager = new PrefManager(this);
 
-        //  usuario por defecto
+        // Usuario por defecto
         prefManager.saveUser("admin", "12345");
 
         binding.btnLogin.setOnClickListener(v -> {
