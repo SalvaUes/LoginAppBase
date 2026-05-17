@@ -61,9 +61,9 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        // Nota: PrefManager original no tiene guardarUsuario con email
-        // Por ahora guardamos solo usuario y password
+        // Guardamos usuario, contraseña y email en preferencias
         prefManager.saveUser(user, pass);
+        prefManager.saveEmail(email);
         toast("Usuario registrado exitosamente");
         limpiar();
     }

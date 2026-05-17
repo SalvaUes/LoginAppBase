@@ -7,6 +7,7 @@ public class PrefManager {
     private static final String PREF_NAME = "LoginPrefs";
     private static final String KEY_USER = "user";
     private static final String KEY_PASS = "pass";
+    private static final String KEY_EMAIL = "email";
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
     private Context context;
@@ -21,6 +22,24 @@ public class PrefManager {
     public void saveUser(String user, String pass) {
         editor.putString(KEY_USER, user);
         editor.putString(KEY_PASS, pass);
+        editor.apply();
+    }
+
+    public void saveEmail(String email) {
+        editor.putString(KEY_EMAIL, email);
+        editor.apply();
+    }
+
+    public String getUsuario() {
+        return pref.getString(KEY_USER, "");
+    }
+
+    public String getEmail() {
+        return pref.getString(KEY_EMAIL, "");
+    }
+
+    public void logout() {
+        editor.clear();
         editor.apply();
     }
 

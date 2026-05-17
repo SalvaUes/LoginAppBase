@@ -22,8 +22,10 @@ public class MainActivity extends AppCompatActivity {
 
         prefManager = new PrefManager(this);
 
-        // Usuario por defecto
-        prefManager.saveUser("admin", "12345");
+        // Usuario por defecto solo si no hay usuario registrado
+        if (prefManager.getUsuario().isEmpty()) {
+            prefManager.saveUser("admin", "12345");
+        }
 
         binding.btnLogin.setOnClickListener(v -> {
             String user = binding.etUser.getText().toString();

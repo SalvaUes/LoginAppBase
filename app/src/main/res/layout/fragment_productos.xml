@@ -5,10 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.ProductosFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- Layout con ListView para mostrar productos -->
+    <ListView
+        android:id="@+id/lvProductos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:dividerHeight="1dp" />
 
 </FrameLayout>

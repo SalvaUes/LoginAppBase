@@ -12,12 +12,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import sv.edu.ues.vl23003.loginappbase.R;
-import sv.edu.ues.vl23003.loginappbase.ui.activities.MainActivity;
-import sv.edu.ues.vl23003.loginappbase.ui.utils.PrefsManager;
+import sv.edu.ues.vl23003.loginappbase.ui.utils.PrefManager;
 
 public class PerfilFragment extends Fragment {
-
-    private PrefsManager prefsManager;
+    
+    private PrefManager prefManager;
     private TextView tvUsuario, tvEmail;
     private Button btnLogout;
 
@@ -26,7 +25,7 @@ public class PerfilFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
-        prefsManager = new PrefsManager(requireContext());
+        prefManager = new PrefManager(requireContext());
 
         tvUsuario = view.findViewById(R.id.tvUsuario);
         tvEmail = view.findViewById(R.id.tvEmail);
@@ -40,8 +39,8 @@ public class PerfilFragment extends Fragment {
     }
 
     private void cargarDatosUsuario() {
-        String usuario = prefsManager.getUsuario();
-        String email = prefsManager.getEmail();
+        String usuario = prefManager.getUsuario();
+        String email = prefManager.getEmail();
 
         tvUsuario.setText("Usuario: " + (usuario.isEmpty() ? "No disponible" : usuario));
         tvEmail.setText("Email: " + (email.isEmpty() ? "No disponible" : email));
@@ -57,7 +56,7 @@ public class PerfilFragment extends Fragment {
     }
 
     private void cerrarSesion() {
-        prefsManager.logout();
+        prefManager.logout();
         Toast.makeText(requireContext(), "Sesión cerrada", Toast.LENGTH_SHORT).show();
 
         if (getActivity() != null) {

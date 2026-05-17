@@ -1,5 +1,15 @@
 <resources>
     <string name="app_name">LoginAppBase</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <!-- Textos para la app -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="usuario_text">Usuario: %1$s</string>
+    <string name="email_text">Email: %1$s</string>
+    <string name="no_disponible">No disponible</string>
+    <string name="bienvenida_usuario">Bienvenido, %1$s!</string>
+    <string name="bienvenida_default">Bienvenido a la aplicación</string>
+    <string name="cerrar_sesion_title">Cerrar sesión</string>
+    <string name="cerrar_sesion_message">¿Estás seguro que deseas cerrar sesión?</string>
+    <string name="si">Sí</string>
+    <string name="no">No</string>
+    <string name="sesion_cerrada">Sesión cerrada</string>
 </resources>

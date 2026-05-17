@@ -27,12 +27,16 @@ public class ProductosFragment extends Fragment {
 
         lvProductos = view.findViewById(R.id.lvProductos);
 
-        cargarProductos();
+        if (lvProductos != null) {
+            cargarProductos();
 
-        lvProductos.setOnItemClickListener((parent, view1, position, id) -> {
-            String producto = listaProductos.get(position);
-            Toast.makeText(getContext(), "Seleccionaste: " + producto, Toast.LENGTH_SHORT).show();
-        });
+            lvProductos.setOnItemClickListener((parent, view1, position, id) -> {
+                if (listaProductos != null && position >= 0 && position < listaProductos.size()) {
+                    String producto = listaProductos.get(position);
+                    Toast.makeText(getContext(), "Seleccionaste: " + producto, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         return view;
     }
@@ -51,6 +55,8 @@ public class ProductosFragment extends Fragment {
                 listaProductos
         );
 
-        lvProductos.setAdapter(adapter);
+        if (lvProductos != null) {
+            lvProductos.setAdapter(adapter);
+        }
     }
 }
