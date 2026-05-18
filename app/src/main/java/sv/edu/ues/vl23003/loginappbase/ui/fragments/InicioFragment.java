@@ -22,6 +22,7 @@ public class InicioFragment extends Fragment {
 
         PrefManager prefManager = new PrefManager(requireContext());
         TextView tvBienvenida = view.findViewById(R.id.tvBienvenida);
+        TextView tvCountProductos = view.findViewById(R.id.tvCountProductos);
 
         String usuario = prefManager.getUsuario();
         if (!usuario.isEmpty()) {
@@ -30,6 +31,22 @@ public class InicioFragment extends Fragment {
             tvBienvenida.setText(getString(R.string.bienvenida_default));
         }
 
+        // Actualizar contador inicial de productos
+        int count = prefManager.getProductCount();
+        tvCountProductos.setText(String.valueOf(count));
+
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Refrescar contador por si hubo cambios en ProductosFragment
+        PrefManager prefManager = new PrefManager(requireContext());
+        View v = getView();
+        if (v != null) {
+            TextView tvCount = v.findViewById(R.id.tvCountProductos);
+            tvCount.setText(String.valueOf(prefManager.getProductCount()));
+        }
     }
 }

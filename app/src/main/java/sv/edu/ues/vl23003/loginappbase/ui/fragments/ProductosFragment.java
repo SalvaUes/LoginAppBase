@@ -1,62 +1,77 @@
 package sv.edu.ues.vl23003.loginappbase.ui.fragments;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+
 import java.util.List;
 
 import sv.edu.ues.vl23003.loginappbase.R;
+import sv.edu.ues.vl23003.loginappbase.ui.utils.PrefManager;
 
 public class ProductosFragment extends Fragment {
 
-    private ListView lvProductos;
-    private List<String> listaProductos;
+    private RecyclerView rvProductos;
+    private ProductoAdapter adapter;
+    private PrefManager prefManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_productos, container, false);
 
-        lvProductos = view.findViewById(R.id.lvProductos);
+        prefManager = new PrefManager(requireContext());
 
-        if (lvProductos != null) {
+        rvProductos = view.findViewById(R.id.rvProductos);
+        TextInputEditText edtNew = view.findViewById(R.id.edtNewProducto);
+        MaterialButton btnAdd = view.findViewById(R.id.btnAddProducto);
+
+        rvProductos.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        cargarProductos();
+
+        btnAdd.setOnClickListener(v -> {
+            String nombre = edtNew.getText() != null ? edtNew.getText().toString().trim() : "";
+            if (TextUtils.isEmpty(nombre)) {
+                Toast.makeText(requireContext(), "Ingrese el nombre del producto", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            prefManager.addProduct(nombre);
             cargarProductos();
-
-            lvProductos.setOnItemClickListener((parent, view1, position, id) -> {
-                if (listaProductos != null && position >= 0 && position < listaProductos.size()) {
-                    String producto = listaProductos.get(position);
-                    Toast.makeText(getContext(), "Seleccionaste: " + producto, Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+            edtNew.setText("");
+            Toast.makeText(requireContext(), "Producto agregado", Toast.LENGTH_SHORT).show();
+        });
 
         return view;
     }
 
     private void cargarProductos() {
-        listaProductos = new ArrayList<>();
-        listaProductos.add("Producto 1");
-        listaProductos.add("Producto 2");
-        listaProductos.add("Producto 3");
-        listaProductos.add("Producto 4");
-        listaProductos.add("Producto 5");
+        List<String> listaProductos = prefManager.getProductList();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                requireContext(),
-                android.R.layout.simple_list_item_1,
-                listaProductos
-        );
+        adapter = new ProductoAdapter(listaProductos, new ProductoAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(String item) {
+                Toast.makeText(getContext(), "Seleccionaste: " + item, Toast.LENGTH_SHORT).show();
+            }
+        }, new ProductoAdapter.OnDeleteClickListener() {
+            @Override
+            public void onDeleteClick(String item) {
+                prefManager.removeProduct(item);
+                cargarProductos();
+                Toast.makeText(getContext(), "Producto eliminado", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-        if (lvProductos != null) {
-            lvProductos.setAdapter(adapter);
-        }
+        rvProductos.setAdapter(adapter);
     }
 }

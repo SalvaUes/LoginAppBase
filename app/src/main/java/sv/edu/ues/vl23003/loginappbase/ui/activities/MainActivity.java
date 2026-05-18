@@ -22,8 +22,14 @@ public class MainActivity extends AppCompatActivity {
 
         prefManager = new PrefManager(this);
 
+        if (prefManager.isLoggedIn() && prefManager.hasRegisteredUser()) {
+            startActivity(new Intent(MainActivity.this, HomeActivity.class));
+            finish();
+            return;
+        }
+
         // Usuario por defecto solo si no hay usuario registrado
-        if (prefManager.getUsuario().isEmpty()) {
+        if (!prefManager.hasRegisteredUser()) {
             prefManager.saveUser("admin", "12345");
         }
 
@@ -32,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             String pass = binding.etPass.getText().toString();
 
             if (prefManager.validateCredentials(user, pass)) {
+                prefManager.setLoggedIn(true);
                 Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();

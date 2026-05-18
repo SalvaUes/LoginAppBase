@@ -12,4 +12,24 @@
     <string name="si">Sí</string>
     <string name="no">No</string>
     <string name="sesion_cerrada">Sesión cerrada</string>
+    <string name="menu_perfil">Perfil</string>
+    <string name="menu_ajustes">Ajustes</string>
+    <string name="menu_cerrar_sesion">Cerrar sesión</string>
+    <string name="toolbar_login">Login</string>
+    <string name="toolbar_registro">Registro</string>
+    <string name="toolbar_inicio">Inicio</string>
+    <string name="login_bienvenido">Bienvenido</string>
+    <string name="login_subtitle">Ingresa con tus credenciales para continuar</string>
+    <string name="login_usuario_hint">Usuario</string>
+    <string name="login_password_hint">Contraseña</string>
+    <string name="login_button">Login</string>
+    <string name="login_register_prompt">¿No tienes cuenta? Regístrate</string>
+    <string name="register_title">Crear cuenta</string>
+    <string name="register_subtitle">Completa tus datos para registrar un nuevo usuario</string>
+    <string name="register_usuario_hint">Usuario</string>
+    <string name="register_email_hint">Email</string>
+    <string name="register_password_hint">Contraseña</string>
+    <string name="register_confirm_password_hint">Confirmar contraseña</string>
+    <string name="register_save_button">Guardar</string>
+    <string name="register_back_button">Regresar</string>
 </resources>

@@ -27,8 +27,8 @@ public class PerfilFragment extends Fragment {
 
         prefManager = new PrefManager(requireContext());
 
-        tvUsuario = view.findViewById(R.id.tvUsuario);
-        tvEmail = view.findViewById(R.id.tvEmail);
+        tvUsuario = view.findViewById(R.id.tvPerfilUsuario);
+        tvEmail = view.findViewById(R.id.tvPerfilEmail);
         btnLogout = view.findViewById(R.id.btnLogout);
 
         cargarDatosUsuario();
