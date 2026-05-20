@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Layout de un item individual de producto en la lista de productos -->
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -8,13 +9,14 @@
     app:cardUseCompatPadding="true"
     app:strokeWidth="0dp">
 
+   
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="16dp">
 
-        <!-- Icono/Imagen del producto -->
+       
         <ImageView
             android:id="@+id/ivProductoIcon"
             android:layout_width="56dp"
@@ -24,7 +26,7 @@
             android:padding="16dp"
             android:contentDescription="Producto" />
 
-        <!-- Información del producto -->
+       
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -33,6 +35,7 @@
             android:layout_marginStart="16dp"
             android:layout_gravity="center_vertical">
 
+           
             <TextView
                 android:id="@+id/tvNombreProducto"
                 android:layout_width="wrap_content"
@@ -42,17 +45,18 @@
                 android:textStyle="bold"
                 android:textColor="?attr/colorOnSurface" />
 
+           
             <TextView
                 android:id="@+id/tvDescripcionProducto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Descripción del producto"
+                android:text="Descripcion del producto"
                 android:textSize="12sp"
                 android:textColor="?attr/colorOutline"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 
-        <!-- Botón eliminar -->
+       
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEliminarProducto"
             style="@style/Widget.Material3.Button.TextButton"

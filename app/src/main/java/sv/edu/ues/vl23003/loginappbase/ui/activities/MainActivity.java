@@ -1,55 +1,54 @@
-package sv.edu.ues.vl23003.loginappbase.ui.activities;
+package sv.edu.ues.vl23003.loginappbase.ui.activities; // paquete de actividades principal
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Toast;
+import android.content.Intent; // importacion para crear intenciones entre pantallas
+import android.os.Bundle; // importacion para usar el ciclo de vida de la actividad
+import android.widget.Toast; // importacion para mostrar mensajes breves al usuario
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity; // importacion de la base de una actividad compatible
 
-import sv.edu.ues.vl23003.loginappbase.databinding.ActivityMainBinding;
-import sv.edu.ues.vl23003.loginappbase.ui.utils.PrefManager;
+import sv.edu.ues.vl23003.loginappbase.databinding.ActivityMainBinding; // importacion del enlace de vista de la pantalla principal
+import sv.edu.ues.vl23003.loginappbase.ui.utils.PrefManager; // importacion del gestor de preferencias de la aplicacion
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity { // clase que representa la pantalla inicial de acceso
 
-    private ActivityMainBinding binding;
-    private PrefManager prefManager;
+    private ActivityMainBinding binding; // enlace con las vistas definidas en el layout principal
+    private PrefManager prefManager; // gestor para leer y guardar datos locales del usuario
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+    protected void onCreate(Bundle savedInstanceState) { // metodo que se ejecuta al crear la pantalla
+        super.onCreate(savedInstanceState); // llamada obligatoria a la actividad padre
+        binding = ActivityMainBinding.inflate(getLayoutInflater()); // se infla el layout con view binding
+        setContentView(binding.getRoot()); // se asigna la vista raiz como contenido de la pantalla
 
-        prefManager = new PrefManager(this);
+        prefManager = new PrefManager(this); // se crea el gestor de preferencias usando esta pantalla
 
-        if (prefManager.isLoggedIn() && prefManager.hasRegisteredUser()) {
-            startActivity(new Intent(MainActivity.this, HomeActivity.class));
-            finish();
-            return;
+        if (prefManager.isLoggedIn() && prefManager.hasRegisteredUser()) { // si ya existe sesion iniciada y usuario registrado se va al inicio
+            startActivity(new Intent(MainActivity.this, HomeActivity.class)); // se abre la pantalla principal del sistema
+            finish(); // se cierra esta pantalla para evitar volver atras
+            return; // se detiene el resto del flujo porque ya no hace falta continuar
         }
 
-        // Usuario por defecto solo si no hay usuario registrado
-        if (!prefManager.hasRegisteredUser()) {
-            prefManager.saveUser("admin", "12345");
+        if (!prefManager.hasRegisteredUser()) { // usuario por defecto solo si no hay usuario registrado
+            prefManager.saveUser("admin", "12345"); // se guarda una cuenta base para poder ingresar por primera vez
         }
 
-        binding.btnLogin.setOnClickListener(v -> {
-            String user = binding.etUser.getText().toString();
-            String pass = binding.etPass.getText().toString();
+        binding.btnLogin.setOnClickListener(v -> { // evento para iniciar sesion cuando se presiona el boton
+            String user = binding.etUser.getText().toString(); // se obtiene el texto escrito en el campo de usuario
+            String pass = binding.etPass.getText().toString(); // se obtiene el texto escrito en el campo de contrasena
 
-            if (prefManager.validateCredentials(user, pass)) {
-                prefManager.setLoggedIn(true);
-                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
+            if (prefManager.validateCredentials(user, pass)) { // se valida si las credenciales coinciden con las guardadas
+                prefManager.setLoggedIn(true); // se marca la sesion como activa
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class); // se prepara la apertura de la pantalla principal
+                startActivity(intent); // se inicia la pantalla principal
+                finish(); // se cierra la pantalla actual para no regresar al login
             } else {
-                Toast.makeText(MainActivity.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show(); // se informa que los datos no son correctos
             }
         });
 
-        binding.tvRegister.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-            startActivity(intent);
+        binding.tvRegister.setOnClickListener(v -> { // evento para abrir la pantalla de registro
+            Intent intent = new Intent(MainActivity.this, RegisterActivity.class); // se crea la intencion para ir al registro
+            startActivity(intent); // se abre la pantalla de registro
         });
     }
 }

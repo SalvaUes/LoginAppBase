@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Layout del fragmento de productos con lista y entrada para agregar productos nuevos -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -6,7 +7,7 @@
     android:orientation="vertical"
     android:background="?attr/colorSurface">
 
-    <!-- Header con búsqueda -->
+   
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,20 +15,23 @@
         app:cardElevation="2dp"
         app:cardUseCompatPadding="false">
 
+       
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
 
+           
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Catálogo de Productos"
+                android:text="Catalogo de Productos"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="?attr/colorOnSurface" />
 
+           
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -38,7 +42,7 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Entrada para nuevo producto -->
+   
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,12 +50,14 @@
         android:padding="12dp"
         android:layout_marginTop="8dp">
 
+       
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Nombre del producto">
 
+           
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtNewProducto"
                 android:layout_width="match_parent"
@@ -59,6 +65,7 @@
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
+       
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAddProducto"
             style="@style/Widget.Material3.Button"
@@ -68,7 +75,7 @@
             android:text="Agregar" />
     </LinearLayout>
 
-    <!-- RecyclerView para productos -->
+   
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProductos"
         android:layout_width="match_parent"

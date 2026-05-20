@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Layout del fragmento de inicio que muestra avatar bienvenida y resumen de productos -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -6,13 +7,14 @@
     android:background="?android:attr/colorBackground"
     android:fillViewport="true">
 
+   
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="24dp">
 
-        <!-- Avatar y Bienvenida -->
+       
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,6 +23,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp">
 
+           
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivAvatar"
                 android:layout_width="96dp"
@@ -30,6 +33,7 @@
                 android:background="?attr/colorPrimaryContainer"
                 app:shapeAppearanceOverlay="@style/CircularImageView" />
 
+           
             <TextView
                 android:id="@+id/tvBienvenida"
                 android:layout_width="wrap_content"
@@ -40,16 +44,17 @@
                 android:textColor="?attr/colorOnBackground"
                 android:layout_marginTop="16dp" />
 
+           
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="¡Que tengas un excelente día!"
+                android:text="Que tengas un excelente dia"
                 android:textSize="14sp"
                 android:textColor="?attr/colorOutline"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 
-        <!-- Cards de estadísticas -->
+       
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,12 +63,14 @@
             app:cardUseCompatPadding="true"
             app:strokeWidth="0dp">
 
+           
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="20dp">
 
+               
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,12 +79,14 @@
                     android:textStyle="bold"
                     android:textColor="?attr/colorOnSurface" />
 
+               
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="16dp">
 
+                   
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -85,6 +94,7 @@
                         android:orientation="vertical"
                         android:gravity="center">
 
+                       
                         <TextView
                             android:id="@+id/tvCountProductos"
                             android:layout_width="wrap_content"
@@ -94,6 +104,7 @@
                             android:textStyle="bold"
                             android:textColor="?attr/colorPrimary" />
 
+                       
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -105,8 +116,8 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Card de acceso rápido eliminada: Explorar Productos -->
 
     </LinearLayout>
 </ScrollView>
+
 
